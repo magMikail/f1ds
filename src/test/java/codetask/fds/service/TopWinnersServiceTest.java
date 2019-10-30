@@ -26,6 +26,9 @@ public class TopWinnersServiceTest {
     @Test
     public void getResults() throws Exception {
         List<String> results = topWinnersService.getWinnerNations();
+        for(String str : results){
+            System.out.println(str);
+        }
         Assert.assertEquals(18, results.size());
     }
 

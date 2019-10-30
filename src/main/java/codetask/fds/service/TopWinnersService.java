@@ -1,15 +1,10 @@
 package codetask.fds.service;
 
 import codetask.fds.model.response.*;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,16 +15,15 @@ public class TopWinnersService {
     private RestTemplate restTemplate;
 
     public List<String> getWinnerNations() {
-        ParentData quote = restTemplate.getForObject(
-                "http://ergast.com/api/f1/2008/results/1.json", ParentData.class);
-        return quote.getMrData().getRaceTable().getRaces().stream()
+        RacesResults quote = restTemplate.getForObject(
+                "http://ergast.com/api/f1/2008/results/1.json", RacesResults.class);
+        return quote.getMRData().getRaceTable().getRaces().stream()
                 .map(Race::getResults)
                 .flatMap(List::stream)
                 .map(Result::getDriver)
                 .map(Driver::getNationality)
                 .collect(Collectors.toList());
     }
-
 
 
 }

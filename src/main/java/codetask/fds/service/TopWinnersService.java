@@ -19,20 +19,17 @@ public class TopWinnersService {
     @Autowired
     private RestTemplate restTemplate;
 
-    public List<Race> getRaces() {
-        ResponseEntity<MRData> quote = restTemplate.getForEntity(
-                "http://ergast.com/api/f1/2008/results/1.json", MRData.class);
-        return quote.getBody().getRaceTable().getRaces();
-    }
-
-    public List<String> getNations() {
-        return getRaces()
-                .stream()
+    public List<String> getWinnerNations() {
+        ParentData quote = restTemplate.getForObject(
+                "http://ergast.com/api/f1/2008/results/1.json", ParentData.class);
+        return quote.getMrData().getRaceTable().getRaces().stream()
                 .map(Race::getResults)
                 .flatMap(List::stream)
                 .map(Result::getDriver)
                 .map(Driver::getNationality)
                 .collect(Collectors.toList());
     }
+
+
 
 }

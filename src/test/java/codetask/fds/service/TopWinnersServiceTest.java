@@ -1,7 +1,6 @@
 package codetask.fds.service;
 
 
-import codetask.fds.model.response.Race;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
+import java.util.Map;
 
 
 @RunWith(SpringRunner.class)
@@ -24,12 +24,17 @@ public class TopWinnersServiceTest {
     }
 
     @Test
-    public void getResults() throws Exception {
+    public void getWinnerNationsTest() throws Exception {
         List<String> results = topWinnersService.getWinnerNations();
-        for(String str : results){
-            System.out.println(str);
-        }
+        System.out.println(results);
         Assert.assertEquals(18, results.size());
+    }
+
+    @Test
+    public void getCountTest() throws Exception {
+        Map<String, Long> count = topWinnersService.count(topWinnersService.getWinnerNations());
+        System.out.println(count);
+        Assert.assertEquals(6, count.size());
     }
 
 }

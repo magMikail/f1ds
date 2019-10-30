@@ -1,11 +1,15 @@
 package codetask.fds.service;
 
-import codetask.fds.model.response.*;
+import codetask.fds.model.response.Driver;
+import codetask.fds.model.response.Race;
+import codetask.fds.model.response.RacesResults;
+import codetask.fds.model.response.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -17,6 +21,7 @@ public class TopWinnersService {
     public List<String> getWinnerNations() {
         RacesResults quote = restTemplate.getForObject(
                 "http://ergast.com/api/f1/2008/results/1.json", RacesResults.class);
+
         return quote.getMRData().getRaceTable().getRaces().stream()
                 .map(Race::getResults)
                 .flatMap(List::stream)
@@ -25,5 +30,9 @@ public class TopWinnersService {
                 .collect(Collectors.toList());
     }
 
+    public Map<String, Long> count(List<String> winnersList) {
+        return winnersList.stream().sorted().collect(Collectors.groupingBy(e -> e.toString(), Collectors.counting()));
+
+    }
 
 }

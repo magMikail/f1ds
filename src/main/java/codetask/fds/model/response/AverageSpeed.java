@@ -2,6 +2,11 @@
 package codetask.fds.model.response;
 
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -18,7 +23,9 @@ public class AverageSpeed implements Serializable
     private String units;
     @JsonProperty("speed")
     private String speed;
-    private final static long serialVersionUID = 4442798929441384280L;
+    @JsonIgnore
+    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+    private final static long serialVersionUID = 8711327340790688338L;
 
     @JsonProperty("units")
     public String getUnits() {
@@ -38,6 +45,16 @@ public class AverageSpeed implements Serializable
     @JsonProperty("speed")
     public void setSpeed(String speed) {
         this.speed = speed;
+    }
+
+    @JsonAnyGetter
+    public Map<String, Object> getAdditionalProperties() {
+        return this.additionalProperties;
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(String name, Object value) {
+        this.additionalProperties.put(name, value);
     }
 
 }

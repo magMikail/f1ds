@@ -2,6 +2,11 @@
 package codetask.fds.model.response;
 
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -45,7 +50,9 @@ public class Result implements Serializable
     private Time time;
     @JsonProperty("FastestLap")
     private FastestLap fastestLap;
-    private final static long serialVersionUID = -1630187868563505541L;
+    @JsonIgnore
+    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+    private final static long serialVersionUID = 6300657953601144343L;
 
     @JsonProperty("number")
     public String getNumber() {
@@ -155,6 +162,16 @@ public class Result implements Serializable
     @JsonProperty("FastestLap")
     public void setFastestLap(FastestLap fastestLap) {
         this.fastestLap = fastestLap;
+    }
+
+    @JsonAnyGetter
+    public Map<String, Object> getAdditionalProperties() {
+        return this.additionalProperties;
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(String name, Object value) {
+        this.additionalProperties.put(name, value);
     }
 
 }

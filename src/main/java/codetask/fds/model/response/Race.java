@@ -3,7 +3,12 @@ package codetask.fds.model.response;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -37,8 +42,10 @@ public class Race implements Serializable
     @JsonProperty("time")
     private String time;
     @JsonProperty("Results")
-    private List<Result> results = new ArrayList<>();
-    private final static long serialVersionUID = -558820549159597510L;
+    private List<Result> results = new ArrayList<Result>();
+    @JsonIgnore
+    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+    private final static long serialVersionUID = 138403174029352597L;
 
     @JsonProperty("season")
     public String getSeason() {
@@ -118,6 +125,16 @@ public class Race implements Serializable
     @JsonProperty("Results")
     public void setResults(List<Result> results) {
         this.results = results;
+    }
+
+    @JsonAnyGetter
+    public Map<String, Object> getAdditionalProperties() {
+        return this.additionalProperties;
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(String name, Object value) {
+        this.additionalProperties.put(name, value);
     }
 
 }

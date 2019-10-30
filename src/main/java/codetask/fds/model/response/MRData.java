@@ -2,6 +2,11 @@
 package codetask.fds.model.response;
 
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -33,7 +38,9 @@ public class MRData implements Serializable
     private String total;
     @JsonProperty("RaceTable")
     private RaceTable raceTable;
-    private final static long serialVersionUID = 150884765376429404L;
+    @JsonIgnore
+    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+    private final static long serialVersionUID = 1058779668054359117L;
 
     @JsonProperty("xmlns")
     public String getXmlns() {
@@ -103,6 +110,16 @@ public class MRData implements Serializable
     @JsonProperty("RaceTable")
     public void setRaceTable(RaceTable raceTable) {
         this.raceTable = raceTable;
+    }
+
+    @JsonAnyGetter
+    public Map<String, Object> getAdditionalProperties() {
+        return this.additionalProperties;
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(String name, Object value) {
+        this.additionalProperties.put(name, value);
     }
 
 }

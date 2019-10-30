@@ -2,6 +2,11 @@
 package codetask.fds.model.response;
 
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -18,7 +23,9 @@ public class Time implements Serializable
     private String millis;
     @JsonProperty("time")
     private String time;
-    private final static long serialVersionUID = 2867906056829099021L;
+    @JsonIgnore
+    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+    private final static long serialVersionUID = 5033653217648409030L;
 
     @JsonProperty("millis")
     public String getMillis() {
@@ -38,6 +45,16 @@ public class Time implements Serializable
     @JsonProperty("time")
     public void setTime(String time) {
         this.time = time;
+    }
+
+    @JsonAnyGetter
+    public Map<String, Object> getAdditionalProperties() {
+        return this.additionalProperties;
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(String name, Object value) {
+        this.additionalProperties.put(name, value);
     }
 
 }

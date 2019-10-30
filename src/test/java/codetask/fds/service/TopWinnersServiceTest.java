@@ -25,14 +25,14 @@ public class TopWinnersServiceTest {
 
     @Test
     public void getWinnerNationsTest() throws Exception {
-        List<String> results = topWinnersService.getWinnerNations();
+        List<String> results = topWinnersService.getWinnerNations(2008);
         System.out.println(results);
         Assert.assertEquals(18, results.size());
     }
 
     @Test
     public void getCountTest() throws Exception {
-        Map<String, Long> count = topWinnersService.count(topWinnersService.getWinnerNations());
+        Map<String, Long> count = topWinnersService.count(topWinnersService.getWinnerNations(2008));
         System.out.println(count);
         Assert.assertEquals(6, count.size());
     }

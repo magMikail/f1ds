@@ -18,9 +18,9 @@ public class TopWinnersService {
     @Autowired
     private RestTemplate restTemplate;
 
-    public List<String> getWinnerNations() {
+    public List<String> getWinnerNations(int year) {
         RacesResults quote = restTemplate.getForObject(
-                "http://ergast.com/api/f1/2008/results/1.json", RacesResults.class);
+                "http://ergast.com/api/f1/"+year+"/results/1.json", RacesResults.class);
 
         return quote.getMRData().getRaceTable().getRaces().stream()
                 .map(Race::getResults)

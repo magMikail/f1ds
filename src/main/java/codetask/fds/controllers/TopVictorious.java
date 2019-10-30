@@ -15,6 +15,6 @@ public class TopVictorious {
     @RequestMapping("/")
 //    @ResponseBody
     public void getTopVictoriousNations(String initialYear, String finalYear) {
-        topWinnersService.getWinnerNations(2008);
+        System.out.println(topWinnersService.count(topWinnersService.getWinnerNations(2008)));
     }
 }

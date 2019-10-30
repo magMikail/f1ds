@@ -11,6 +11,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 
 @RunWith(SpringRunner.class)
@@ -33,7 +34,8 @@ public class TopWinnersServiceTest {
     @Test
     public void getCountTest() throws Exception {
         Map<String, Long> count = topWinnersService.count(topWinnersService.getWinnerNations(2008));
-        System.out.println(count);
+
+        System.out.println(new TreeMap<String, Long>(count));
         Assert.assertEquals(6, count.size());
     }
 

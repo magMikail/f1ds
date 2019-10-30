@@ -10,6 +10,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 @Service
@@ -20,7 +21,7 @@ public class TopWinnersService {
 
     public List<String> getWinnerNations(int year) {
         RacesResults quote = restTemplate.getForObject(
-                "http://ergast.com/api/f1/"+year+"/results/1.json", RacesResults.class);
+                "http://ergast.com/api/f1/" + year + "/results/1.json", RacesResults.class);
 
         return quote.getMRData().getRaceTable().getRaces().stream()
                 .map(Race::getResults)
@@ -32,7 +33,9 @@ public class TopWinnersService {
 
     public Map<String, Long> count(List<String> winnersList) {
         return winnersList.stream().sorted().collect(Collectors.groupingBy(e -> e.toString(), Collectors.counting()));
-
     }
 
+    private TreeMap<String, Long> sortedCount(Map<String, Long> unsortedCount) {
+        return new TreeMap<String, Long>(unsortedCount);
+    }
 }

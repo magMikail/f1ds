@@ -1,6 +1,7 @@
 package codetask.fds.model.response;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -21,7 +22,7 @@ public class RaceTable implements Serializable {
     @JsonProperty("position")
     private String position;
     @JsonProperty("Races")
-    private List<Race> races = null;
+    private List<Race> races = new ArrayList<>();
 
     @JsonProperty("season")
     public String getSeason() {

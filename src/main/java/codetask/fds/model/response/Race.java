@@ -2,6 +2,7 @@
 package codetask.fds.model.response;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -36,7 +37,7 @@ public class Race implements Serializable
     @JsonProperty("time")
     private String time;
     @JsonProperty("Results")
-    private List<Result> results = null;
+    private List<Result> results = new ArrayList<>();
     private final static long serialVersionUID = -558820549159597510L;
 
     @JsonProperty("season")

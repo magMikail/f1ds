@@ -31,11 +31,9 @@ public class TopWinnersService {
                 .collect(Collectors.toList());
     }
 
-    public Map<String, Long> count(List<String> winnersList) {
-        return winnersList.stream().sorted().collect(Collectors.groupingBy(e -> e.toString(), Collectors.counting()));
+    public Map<String, Long> sortedCount(List<String> winnersList) {
+        Map<String, Long> unsortedCount = winnersList.stream().sorted().collect(Collectors.groupingBy(e -> e.toString(), Collectors.counting()));
+        return new TreeMap<>(unsortedCount);
     }
 
-    private TreeMap<String, Long> sortedCount(Map<String, Long> unsortedCount) {
-        return new TreeMap<String, Long>(unsortedCount);
-    }
 }

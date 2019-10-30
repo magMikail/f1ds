@@ -1,12 +1,12 @@
-package codetask.fds.model;
+package codetask.fds.model.response;
 
 import java.io.Serializable;
 
-public class WinnersNationality implements Serializable {
+public class WinnersNationalityResponse implements Serializable {
 
-    String driverNationality;
+    private String driverNationality;
 
-    int numberOfVictorious;
+    private long numberOfVictorious;
 
     public String getDriverNationality() {
         return driverNationality;
@@ -16,7 +16,7 @@ public class WinnersNationality implements Serializable {
         this.driverNationality = driverNationality;
     }
 
-    public int getNumberOfVictorious() {
+    public long getNumberOfVictorious() {
         return numberOfVictorious;
     }
 

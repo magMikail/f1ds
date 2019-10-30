@@ -1,9 +1,9 @@
 package codetask.fds.service;
 
-import codetask.fds.model.response.Driver;
-import codetask.fds.model.response.Race;
-import codetask.fds.model.response.RacesResults;
-import codetask.fds.model.response.Result;
+import codetask.fds.model.request.Driver;
+import codetask.fds.model.request.Race;
+import codetask.fds.model.request.RacesResults;
+import codetask.fds.model.request.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;

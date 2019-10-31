@@ -36,4 +36,10 @@ public class TopWinnersService {
         return new TreeMap<>(unsortedCount);
     }
 
+//todo no ideas???
+//    public List<Map<String,Long>> addRank(Map<String,String> sortedCount){
+//        List<Map<String,Long>> ranked = sortedCount.forEach((s, s2) -> sortedCount);
+//        return null;
+//    }
+
 }

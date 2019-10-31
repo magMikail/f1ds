@@ -1,19 +1,43 @@
-### Task - F1 Data Service
-Create a REST Service that provides aggregated data about Formula One (F1) results history.
-Data should be consumed from another existing API, Ergast.
+**HOW TO Use:**
 
-**responses in CSV and JSON format**.
-####The top 10 most victorious
-List of the top 10 most victorious nationalities in grand-prixs over a given range of years
-•	Tie-break should be alphabetical order.
-**Inputs**
-•	Initial year
-•	Final year
-**Response**
-•	Response must contain following fields:
-o	Rank (1 to 10)
-o	Nationality
-o	Number of Victories
+A simple test can be look like this.
 
-•	If invalid input, you should return 400 (Bad Request) with comprehensive error message.
+`cd f1ds`
 
+`mvn clean install`
+
+`cd target/`
+
+`java -jar formula-one-ds-0.0.1-SNAPSHOT.jar`
+
+Now we can consume results from F1 history
+
+To request 10 most victorious nationalities in grand-prixs in 2008 year:
+
+`GET http://localhost:8080/topWinners/2008/2008`
+```
+[
+    {"driverNationality":"Brazilian","numberOfVictorious":6,"range":1},
+    {"driverNationality":"British","numberOfVictorious":5,"range":2},
+    {"driverNationality":"Finnish","numberOfVictorious":3,"range":3},
+    {"driverNationality":"German","numberOfVictorious":1,"range":4},
+    {"driverNationality":"Polish","numberOfVictorious":1,"range":5},
+    {"driverNationality":"Spanish","numberOfVictorious":2,"range":6}
+]
+```
+
+Next request will return 10 most victorious nationalities in grand-prixs between 2008 and 2010 years.
+
+`GET http://localhost:8080/topWinners/2008/2010`
+
+```
+[
+    {"driverNationality":"Australian","numberOfVictorious":6,"range":1},
+    {"driverNationality":"Brazilian","numberOfVictorious":8,"range":2},
+    {"driverNationality":"British","numberOfVictorious":18,"range":3},
+    {"driverNationality":"Finnish","numberOfVictorious":4,"range":4},
+    {"driverNationality":"German","numberOfVictorious":10,"range":5},
+    {"driverNationality":"Polish","numberOfVictorious":1,"range":6},
+    {"driverNationality":"Spanish","numberOfVictorious":7,"range":7}
+]
+```

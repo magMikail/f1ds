@@ -47,5 +47,4 @@ public class TopWinnersService {
         return list;
     }
 
-
 }

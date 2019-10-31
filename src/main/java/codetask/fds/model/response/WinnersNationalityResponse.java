@@ -48,4 +48,6 @@ public class WinnersNationalityResponse implements Serializable {
                 ", range=" + range +
                 '}';
     }
+
+
 }

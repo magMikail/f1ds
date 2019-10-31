@@ -22,16 +22,14 @@ public class TopVictorious {
     }
 
     @GetMapping("{year}")
-    public Map<String, Long> sendWinners(@PathVariable String year
-//            , @RequestBody RacesResults request
-    ) {
-        return topWinnersService.getSortedWinners(Integer.valueOf(year));
+    public Map<String, Long> sendWinners(@PathVariable int year) {
+        return topWinnersService.getSortedWinners(year);
     }
 
     @GetMapping("{startYear}/{finishYear}")
-    public Map<String, Long> sendWinnersAllYears(@PathVariable String startYear, @PathVariable String finishYear) {
+    public Map<String, Long> sendWinnersAllYears(@PathVariable int startYear, @PathVariable int finishYear) {
 
-        return topWinnersService.getSortedWinnersForYears(Integer.valueOf(startYear),Integer.valueOf(finishYear));
+        return topWinnersService.getSortedWinnersForYears(startYear, finishYear);
     }
 
 //    @GetMapping("{year}")

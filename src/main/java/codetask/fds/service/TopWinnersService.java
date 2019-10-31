@@ -48,6 +48,7 @@ public class TopWinnersService {
     private List<String> collectWinners(int startYear, int finishYear) {
         List<String> allYearsWinners = new ArrayList<>();
         for (int i = startYear; i <= finishYear; i++) {
+            System.out.println("+++++++++++"+i);
             allYearsWinners.addAll(getWinnerNations(i));
         }
         return allYearsWinners;

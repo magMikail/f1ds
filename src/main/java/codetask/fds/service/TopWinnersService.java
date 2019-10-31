@@ -21,7 +21,6 @@ public class TopWinnersService {
     @Autowired
     private RestTemplate restTemplate;
 
-
     public List<String> requestWinnersNationality(int year) {
         RacesResults quote = restTemplate.getForObject(
                 "http://ergast.com/api/f1/" + year + "/results/1.json", RacesResults.class);
@@ -38,12 +37,15 @@ public class TopWinnersService {
         for (int i = startYear; i <= finishYear; i++) {
             allYearsWinners.addAll(requestWinnersNationality(i));
         }
-        return new TreeMap<>(allYearsWinners.stream().sorted().collect(Collectors.groupingBy(e -> e.toString(), Collectors.counting())));
+        return new TreeMap<>(allYearsWinners.stream().sorted().collect(Collectors.groupingBy(String::toString, Collectors.counting())));
     }
 
     public List<WinnersNationalityResponse> responseMapper(Map<String, Long> map) {
         List<WinnersNationalityResponse> list = new ArrayList<>();
         map.forEach((k, v) -> list.add(new WinnersNationalityResponse(k, v, list.size() + 1)));
+        if (!list.isEmpty()&&list.size()>10){
+            return list.subList(0,10);
+        }
         return list;
     }
 

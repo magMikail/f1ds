@@ -9,7 +9,7 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Race {
     @JsonProperty("Results")
-    private List<Result> results = new ArrayList<Result>();
+    private List<Result> results = new ArrayList<>();
 
     public List<Result> getResults() {
         return results;

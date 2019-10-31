@@ -10,7 +10,7 @@ import java.util.List;
 public class RaceTable {
 
     @JsonProperty("Races")
-    private List<Race> races = new ArrayList<Race>();
+    private List<Race> races = new ArrayList<>();
 
     public List<Race> getRaces() {
         return races;

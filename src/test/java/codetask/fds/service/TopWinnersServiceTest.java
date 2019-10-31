@@ -2,7 +2,6 @@ package codetask.fds.service;
 
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,18 +18,18 @@ public class TopWinnersServiceTest {
     @Autowired
     private TopWinnersService topWinnersService;
 
-    @Before
-    public void setUp() throws Exception {
-    }
+//    @Before
+//    public void setUp() throws Exception {
+//    }
 
     @Test
-    public void consumedFromOutsideApi() throws Exception {
+    public void consumedFromOutsideApi() {
         List<String> results = topWinnersService.requestWinnersNationality(2008);
         assert (results.size() == 18);
     }
 
     @Test
-    public void consumedForFewYears() throws Exception {
+    public void consumedForFewYears() {
         Map<String, Long> winners = topWinnersService.collectAllWinnersForYears(2008, 2008);
         System.out.println(winners);
         Assert.assertEquals(6, winners.size());

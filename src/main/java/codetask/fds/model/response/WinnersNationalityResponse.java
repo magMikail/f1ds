@@ -8,6 +8,7 @@ public class WinnersNationalityResponse implements Serializable {
 
     private long numberOfVictorious;
 
+
     public String getDriverNationality() {
         return driverNationality;
     }

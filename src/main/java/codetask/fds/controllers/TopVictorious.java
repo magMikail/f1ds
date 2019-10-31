@@ -17,9 +17,8 @@ public class TopVictorious {
 
     @ResponseStatus(value = HttpStatus.OK)
     @GetMapping("{startYear}/{finishYear}")
-    public List<WinnersNationalityResponse> sendWinnersAllYears(@PathVariable int startYear, @PathVariable int finishYear) {
-        List<WinnersNationalityResponse> winnersResponse = topWinnersService.responseMapper(topWinnersService.collectAllWinnersForYears(startYear, finishYear));
-        return winnersResponse;
+    public List<WinnersNationalityResponse> sendWinnersAllYears(@PathVariable int startYear, @PathVariable int finishYear)  {
+        return topWinnersService.responseMapper(topWinnersService.collectAllWinnersForYears(startYear, finishYear));
     }
 
 }

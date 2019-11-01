@@ -3,7 +3,9 @@ package codetask.fds.controllers;
 import codetask.fds.model.response.WinnersNationalityResponse;
 import codetask.fds.service.TopWinnersService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,8 +19,16 @@ public class TopVictorious {
 
     @ResponseStatus(value = HttpStatus.OK)
     @GetMapping("{startYear}/{finishYear}")
-    public List<WinnersNationalityResponse> sendWinnersAllYears(@PathVariable int startYear, @PathVariable int finishYear) {
+    public @ResponseBody
+    List<WinnersNationalityResponse> sendWinnersAllYears(@PathVariable int startYear, @PathVariable int finishYear) {
         return topWinnersService.responseMapper(topWinnersService.collectAllWinnersForYears(startYear, finishYear));
+    }
+
+    @GetMapping("{startYear}/{finishYear}/csv")
+    public ResponseEntity<String> sendWinnersAllYearsCsv(@PathVariable int startYear, @PathVariable int finishYear) {
+        HttpHeaders responseHeaders = new HttpHeaders();
+        responseHeaders.add("Content-Type", "text/plain; charset=utf-8");
+        return new ResponseEntity<>(topWinnersService.responseMapperToString(topWinnersService.collectAllWinnersForYears(startYear, finishYear)), responseHeaders, HttpStatus.OK);
     }
 
 }

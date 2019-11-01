@@ -42,11 +42,9 @@ public class WinnersNationalityResponse implements Serializable {
 
     @Override
     public String toString() {
-        return "WinnersNationalityResponse{" +
-                "driverNationality='" + driverNationality + '\'' +
+        return "driverNationality='" + driverNationality + '\'' +
                 ", numberOfVictorious=" + numberOfVictorious +
-                ", range=" + range +
-                '}';
+                ", range=" + range;
     }
 
 

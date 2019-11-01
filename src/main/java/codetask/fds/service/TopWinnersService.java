@@ -62,4 +62,9 @@ public class TopWinnersService {
         return list;
     }
 
+    public String responseMapperToString(Map<String, Long> map) {
+        return responseMapper(map).stream().map(w -> String.valueOf(w))
+                .collect(Collectors.joining("\n"));
+    }
+
 }

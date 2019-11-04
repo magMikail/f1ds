@@ -21,11 +21,11 @@ public class PitStopService {
     @Autowired
     private RestTemplate restTemplate;
 
-    public List<PitStop> requestPitStopTime(int year, int threshold) {
+    private List<PitStop> requestPitStop(int year, int threshold) {
         RacesResults quote;
         try {
             quote = restTemplate.getForObject(
-                    "http://ergast.com/api/f1/" + year + "/last/pitstops.json", RacesResults.class
+                    "http://ergast.com/api/f1/" + year + "/" + threshold + "/pitstops.json", RacesResults.class
             );
         } catch (HttpClientErrorException ex) {
             log.info("Bad request for {} year ", year);
@@ -34,12 +34,29 @@ public class PitStopService {
         return quote.getMRData().getRaceTable().getRaces().get(0).getPitStops();
     }
 
+    public List<PitStop> collectAllPitStops(int year) {
+        List<PitStop> allPitStops = new ArrayList<>();
+//        todo replace with 'last' + get 'round' as a initial loop value
+        for (int i = 20; i > 0; i--) {
+            try {
+                allPitStops.addAll(requestPitStop(year, i));
+            } catch (IndexOutOfBoundsException ex) {
+                continue;
+            }
+        }
+        return allPitStops;
+    }
 
     public List<PitStopTimeResponse> responseMapper(List<PitStop> response) {
         List<PitStopTimeResponse> list = new ArrayList<>();
+        PitStopTimeResponse ptr = new PitStopTimeResponse();
+
         response.forEach(i -> i.getDriverId());
         response.forEach(System.out::println);
 
+        for (PitStop pitStop : response) {
+            ptr.setDriver(ptr.getDriver());
+        }
         return list;
     }
 

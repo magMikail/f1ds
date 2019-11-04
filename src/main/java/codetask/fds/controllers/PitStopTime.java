@@ -19,6 +19,7 @@ public class PitStopTime {
     @GetMapping("{year}/{threshold}")
     public @ResponseBody
     List<PitStopTimeResponse> sendWinnersAllYears(@PathVariable int year, @PathVariable int threshold) {
+
         return pitStopService.responseMapper(pitStopService.collectAllPitStops(year));
     }
 }

@@ -12,7 +12,7 @@ public class PitStop implements Serializable {
     private String driverId;
 
     @JsonProperty("duration")
-    private String duration;
+    private Double duration;
 
     public String getDriverId() {
         return driverId;
@@ -22,11 +22,11 @@ public class PitStop implements Serializable {
         this.driverId = driverId;
     }
 
-    public String getDuration() {
+    public Double getDuration() {
         return duration;
     }
 
-    public void setDuration(String duration) {
+    public void setDuration(Double duration) {
         this.duration = duration;
     }
 

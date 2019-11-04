@@ -12,7 +12,10 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class PitStopService {
@@ -47,17 +50,24 @@ public class PitStopService {
         return allPitStops;
     }
 
-    public List<PitStopTimeResponse> responseMapper(List<PitStop> response) {
-        List<PitStopTimeResponse> list = new ArrayList<>();
-        PitStopTimeResponse ptr = new PitStopTimeResponse();
-
-        response.forEach(i -> i.getDriverId());
-        response.forEach(System.out::println);
-
-        for (PitStop pitStop : response) {
-            ptr.setDriver(ptr.getDriver());
+    private Map<String, List<Double>> distinctDrivers(List<PitStop> allPitStops) {
+        Map<String, List<Double>> result = new HashMap<>();
+        List<String> drivers = allPitStops.stream()
+                .map(PitStop::getDriverId)
+                .distinct().collect(Collectors.toList());
+        for (String s : drivers) {
+            result.put(s, allPitStops.stream()
+                    .filter(aps -> aps.getDriverId().equals(s))
+                    .map(d -> d.getDuration()).
+                            collect(Collectors.toList()));
         }
-        return list;
+        return result;
     }
+
+    public List<PitStopTimeResponse> responseMapper(List<PitStop> response) {
+
+        return null;
+    }
+
 
 }

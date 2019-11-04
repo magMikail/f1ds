@@ -13,7 +13,6 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class PitStopService {
@@ -28,14 +27,11 @@ public class PitStopService {
             quote = restTemplate.getForObject(
                     "http://ergast.com/api/f1/" + year + "/last/pitstops.json", RacesResults.class
             );
-
         } catch (HttpClientErrorException ex) {
             log.info("Bad request for {} year ", year);
             throw new NotFoundException(year, year);
         }
-        return quote.getmRData().getRaceTable().getRaces().get(0).getPitStops()
-                .stream()
-                .collect(Collectors.toList());
+        return quote.getmRData().getRaceTable().getRaces().get(0).getPitStops();
     }
 
 

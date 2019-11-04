@@ -41,3 +41,26 @@ Next request will return 10 most victorious nationalities in grand-prixs between
     {"driverNationality":"Spanish","numberOfVictorious":7,"range":7}
 ]
 ```
+
+
+The average time of pit stops
+The average time of pit stops by constructors in a determined year considering a threshold
+•	Threshold value is the maximum accepted average pit stop time in seconds.
+Example: threshold = 25, only show averages of 25 seconds and less.
+•	Tie-break should be the constructor with fastest pit stop time.
+
+Inputs
+•	Year
+•	Threshold
+
+Response
+•	Response must contain following fields:
+o	Rank (1 to X)
+o	Constructor name
+o	Average pit stop time
+o	Fastest pit stop time
+o	Slowest pit stop time
+•	If invalid input, you should return 400 (Bad Request) with comprehensive error message.
+•	If no data for the given year, or the threshold excludes all data, you should return HTTP status 204 (No content), with no data.
+
+

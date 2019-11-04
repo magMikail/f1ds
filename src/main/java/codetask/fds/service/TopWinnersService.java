@@ -1,10 +1,10 @@
 package codetask.fds.service;
 
 import codetask.fds.exceptions.NotFoundException;
-import codetask.fds.model.request.Driver;
-import codetask.fds.model.request.Race;
-import codetask.fds.model.request.RacesResults;
-import codetask.fds.model.request.Result;
+import codetask.fds.model.request.topWinners.Driver;
+import codetask.fds.model.request.topWinners.Race;
+import codetask.fds.model.request.topWinners.RacesResults;
+import codetask.fds.model.request.topWinners.Result;
 import codetask.fds.model.response.WinnersNationalityResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

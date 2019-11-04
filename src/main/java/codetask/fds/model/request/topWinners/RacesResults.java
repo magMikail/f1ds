@@ -1,4 +1,4 @@
-package codetask.fds.model.request;
+package codetask.fds.model.request.topWinners;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;

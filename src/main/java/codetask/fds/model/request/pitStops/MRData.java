@@ -1,10 +1,13 @@
-package codetask.fds.model.request;
+package codetask.fds.model.request.pitStops;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.io.Serializable;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class MRData {
+public class MRData implements Serializable {
+
     @JsonProperty("RaceTable")
     private RaceTable raceTable;
 
@@ -15,4 +18,5 @@ public class MRData {
     public void setRaceTable(RaceTable raceTable) {
         this.raceTable = raceTable;
     }
+
 }

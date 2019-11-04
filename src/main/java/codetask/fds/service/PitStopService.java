@@ -1,8 +1,8 @@
 package codetask.fds.service;
 
 import codetask.fds.exceptions.NotFoundException;
+import codetask.fds.model.request.common.RacesResults;
 import codetask.fds.model.request.pitStops.PitStop;
-import codetask.fds.model.request.pitStops.RacesResults;
 import codetask.fds.model.response.PitStopTimeResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,13 +31,15 @@ public class PitStopService {
             log.info("Bad request for {} year ", year);
             throw new NotFoundException(year, year);
         }
-        return quote.getmRData().getRaceTable().getRaces().get(0).getPitStops();
+        return quote.getMRData().getRaceTable().getRaces().get(0).getPitStops();
     }
 
 
     public List<PitStopTimeResponse> responseMapper(List<PitStop> response) {
         List<PitStopTimeResponse> list = new ArrayList<>();
+        response.forEach(i -> i.getDriverId());
         response.forEach(System.out::println);
+
         return list;
     }
 

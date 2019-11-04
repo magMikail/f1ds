@@ -1,17 +1,28 @@
-package codetask.fds.model.request.pitStops;
+package codetask.fds.model.request.common;
 
+import codetask.fds.model.request.pitStops.PitStop;
+import codetask.fds.model.request.topWinners.Result;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Race implements Serializable {
+public class Race {
+    @JsonProperty("Results")
+    private List<Result> results = new ArrayList<>();
 
     @JsonProperty("PitStops")
     private List<PitStop> pitStops = new ArrayList<PitStop>();
+
+    public List<Result> getResults() {
+        return results;
+    }
+
+    public void setResults(List<Result> results) {
+        this.results = results;
+    }
 
     public List<PitStop> getPitStops() {
         return pitStops;
@@ -20,4 +31,5 @@ public class Race implements Serializable {
     public void setPitStops(List<PitStop> pitStops) {
         this.pitStops = pitStops;
     }
+
 }

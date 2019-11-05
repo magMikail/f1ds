@@ -12,7 +12,7 @@ A simple test can be look like this.
 
 Now we can consume results from F1 history
 
-To request 10 most victorious nationalities in grand-prixs in 2008 year:
+1. To request 10 most victorious nationalities in grand-prixs in 2008 year:
 
 `GET http://localhost:8080/topWinners/2008/2008`
 ```
@@ -41,26 +41,19 @@ Next request will return 10 most victorious nationalities in grand-prixs between
     {"driverNationality":"Spanish","numberOfVictorious":7,"range":7}
 ]
 ```
+2. **To request The average time of pit stops 2012 year with a threshold limit 22 sec**:
+`GET http://localhost:8080/pitStopTime/2012/22`
 
+```
+[
+    {"rank":1,"driver":"michael_schumacher","averagePitStopTime":21.99210344827586,"fastestPitStopTime":13.199,"slowestPitStopTime":30.879},
+    {"rank":2,"driver":"vettel","averagePitStopTime":21.888375,"fastestPitStopTime":15.008,"slowestPitStopTime":29.117},
+    {"rank":3,"driver":"alonso","averagePitStopTime":21.92447619047619,"fastestPitStopTime":17.57,"slowestPitStopTime":29.557},
+    {"rank":4,"driver":"button","averagePitStopTime":21.95572,"fastestPitStopTime":17.867,"slowestPitStopTime":30.019},
+    {"rank":5,"driver":"ambrosio","averagePitStopTime":21.962,"fastestPitStopTime":21.962,"slowestPitStopTime":21.962}
+]
+```
+3. **To request data in CSV format**:
 
-The average time of pit stops
-The average time of pit stops by constructors in a determined year considering a threshold
-•	Threshold value is the maximum accepted average pit stop time in seconds.
-Example: threshold = 25, only show averages of 25 seconds and less.
-•	Tie-break should be the constructor with fastest pit stop time.
-
-Inputs
-•	Year
-•	Threshold
-
-Response
-•	Response must contain following fields:
-o	Rank (1 to X)
-o	Constructor name
-o	Average pit stop time
-o	Fastest pit stop time
-o	Slowest pit stop time
-•	If invalid input, you should return 400 (Bad Request) with comprehensive error message.
-•	If no data for the given year, or the threshold excludes all data, you should return HTTP status 204 (No content), with no data.
-
-
+`GET http://localhost:8080/topWinners/2008/2010/csv`
+`GET http://localhost:8080/pitStopTime/2012/22/csv`
